@@ -12,3 +12,7 @@ Libraries used:
  * Numpy
  * Pandas
  * Sklearn
+
+Models Tried:
+  1. SVM
+  2. DecisionTreeClassifier (Using currently)
