@@ -19,6 +19,11 @@ from sklearn.model_selection import train_test_split
 X = train.iloc[:,1:]
 y = train.iloc[:,0]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
-from sklearn import svm
-model = svm.SVC()
-model.fit(X_train, y_train)
+
+from sklearn.tree import DecisionTreeClassifier
+dtc = DecisionTreeClassifier()
+dtc.fit(X_train, y_train)
+
+from sklearn.metrics import accuracy_score
+print('Accuracy Score : ', accuracy_score(y_train, dtc.predict(X_train)))
+print('Accuracy Score : ', accuracy_score(y_test, dtc.predict(X_test)))
