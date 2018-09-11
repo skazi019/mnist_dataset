@@ -35,8 +35,8 @@ img = img.reshape((28,28))
 plt.title(test.iloc[3,-1])
 plt.imshow(img, cmap='gray')
 
-test = test['label']
+test = test[['label']]
+test.columns = ['Label']
+test.index.names = ['ImageId']
 test.head()
-test.shape
-test.columns = ['ImageId', 'Label']
 test.to_csv('res_dtc.csv')
