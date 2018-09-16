@@ -16,3 +16,8 @@ Libraries used:
 Models Tried:
   1. SVM
   2. DecisionTreeClassifier (Using currently)
+
+Model Finalized:
+  DecisionTreeClassifier
+
+Accuracy Achieved : 0.85414

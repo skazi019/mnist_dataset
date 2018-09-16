@@ -18,7 +18,7 @@ plt.imshow(image, cmap='gray')
 from sklearn.model_selection import train_test_split
 X = train.iloc[:,1:]
 y = train.iloc[:,0]
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
 from sklearn.tree import DecisionTreeClassifier
 dtc = DecisionTreeClassifier(max_depth=14)
@@ -28,12 +28,13 @@ from sklearn.metrics import accuracy_score
 print('Accuracy Score : ', accuracy_score(y_train, dtc.predict(X_train)))
 print('Accuracy Score : ', accuracy_score(y_test, dtc.predict(X_test)))
 
-test['label'] = dtc.predict(test)
-test.head()
-img = np.array(test.iloc[3,:-1],dtype='float')
-img = img.reshape((28,28))
-plt.title(test.iloc[3,-1])
-plt.imshow(img, cmap='gray')
+res = dtc.predict(test)
+res = pd.DataFrame(res)
+res.index = res.index + 1
+res.columns = ['Label']
+res.head()
+res.reindex = ['ImageId']
+res.index.name = 'ImageId'
+res.head()
 
-res = test[['Label']]
-res.to_csv('res_dtc.csv')
+res.to_csv('submission.csv', sep=",")
